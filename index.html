@@ -1,85 +1,123 @@
+html_content = """
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-zinc-900 text-zinc-100 scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Bunker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0e0e0e;
-      color: #e0e0e0;
+    @keyframes glitch {
+      0% {clip-path: inset(10% 0 85% 0);}
+      10% {clip-path: inset(15% 0 70% 0);}
+      20% {clip-path: inset(40% 0 43% 0);}
+      30% {clip-path: inset(80% 0 5% 0);}
+      40% {clip-path: inset(50% 0 40% 0);}
+      50% {clip-path: inset(10% 0 85% 0);}
+      60% {clip-path: inset(15% 0 70% 0);}
+      70% {clip-path: inset(40% 0 43% 0);}
+      80% {clip-path: inset(80% 0 5% 0);}
+      90% {clip-path: inset(50% 0 40% 0);}
+      100% {clip-path: inset(10% 0 85% 0);}
     }
-    header {
-      background: #1a1a1a;
-      padding: 20px;
-      text-align: center;
-      font-size: 2em;
-      border-bottom: 1px solid #333;
+    .glitch {
+      position: relative;
+      font-family: 'Courier New', monospace;
+      font-weight: 800;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
     }
-    nav {
-      display: flex;
-      justify-content: center;
-      background: #111;
-      border-bottom: 1px solid #222;
+    .glitch:before,
+    .glitch:after {
+      content: attr(data-glitch);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      overflow: hidden;
+      background: transparent;
+      color: #00ffff;
+      clip-path: inset(0 0 0 0);
+      animation: glitch 2s infinite linear alternate-reverse;
     }
-    nav a {
-      color: #ccc;
-      text-decoration: none;
-      padding: 15px 20px;
-      display: block;
-    }
-    nav a:hover {
-      background: #222;
-      color: #fff;
-    }
-    main {
-      padding: 20px;
-    }
-    section {
-      margin-bottom: 40px;
-    }
-    h2 {
-      border-bottom: 1px solid #333;
-      padding-bottom: 5px;
-    }
-    .post {
-      background: #1e1e1e;
-      padding: 15px;
-      border: 1px solid #333;
-      margin-bottom: 20px;
+    .glitch:after {
+      color: #ff00ff;
+      animation-delay: .5s;
     }
   </style>
 </head>
-<body>
-  <header>The Bunker</header>
-  <nav>
-    <a href="#confessions">Confessions</a>
-    <a href="#signal">Signal Boost</a>
-    <a href="#uncuffed">Uncuffed</a>
-    <a href="#echo">Echo Chamber</a>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="bg-zinc-800 shadow-md">
+    <div class="container mx-auto py-8 text-center">
+      <h1 class="glitch" data-glitch="The Bunker">The Bunker</h1>
+      <p class="mt-2 text-zinc-400">Broadcast from the Underground</p>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-zinc-900 border-b border-zinc-700 sticky top-0 z-10">
+    <div class="container mx-auto flex justify-center gap-6 py-3 text-sm font-semibold">
+      <a href="#confessions" class="hover:text-emerald-400">Confessions</a>
+      <a href="#signal" class="hover:text-emerald-400">Signal Boost</a>
+      <a href="#uncuffed" class="hover:text-emerald-400">Uncuffed</a>
+      <a href="#echo" class="hover:text-emerald-400">Echo Chamber</a>
+    </div>
   </nav>
-  <main>
+
+  <!-- Main -->
+  <main class="flex-1 container mx-auto px-4 lg:px-8 py-10 space-y-20">
+    <!-- Confessions -->
     <section id="confessions">
-      <h2>Confessions</h2>
-      <div class="post">
-        <h3>Confession #0001 - I Never Worked for Anyone</h3>
-        <p>I wasn’t a foot soldier. I wasn’t repping no set... (truncated)</p>
-      </div>
+      <h2 class="text-3xl font-bold border-b border-zinc-700 pb-2 mb-6">Confessions</h2>
+      <article class="bg-zinc-800/60 backdrop-blur-md p-6 rounded-xl border border-zinc-700 shadow-lg hover:shadow-emerald-500/30 transition-shadow">
+        <h3 class="text-xl font-semibold mb-2">#0001 &mdash; I Never Worked for Anyone</h3>
+        <p class="leading-relaxed text-zinc-300">
+          I wasn't a foot soldier. I wasn't repping no set. I had connections with crews who moved heavy &mdash; Angels, GDs, border boys, you name it. But I moved my way...
+        </p>
+      </article>
+      <!-- Placeholder for future confessions -->
     </section>
+
+    <!-- Signal Boost -->
     <section id="signal">
-      <h2>Signal Boost</h2>
-      <p>Coming soon: Tools, tactics, and underground tech to move loud while staying quiet.</p>
+      <h2 class="text-3xl font-bold border-b border-zinc-700 pb-2 mb-6">Signal Boost</h2>
+      <p class="text-zinc-300">Coming soon: underground tech, digital tools, and survival tactics.</p>
     </section>
+
+    <!-- Uncuffed -->
     <section id="uncuffed">
-      <h2>Uncuffed</h2>
-      <p>Raw takes on recovery, clarity, and climbing out of the system.</p>
+      <h2 class="text-3xl font-bold border-b border-zinc-700 pb-2 mb-6">Uncuffed</h2>
+      <p class="text-zinc-300">Raw takes on recovery, clarity, and climbing out of the system.</p>
     </section>
+
+    <!-- Echo Chamber -->
     <section id="echo">
-      <h2>Echo Chamber</h2>
-      <p>Visitors will be able to leave anonymous or signed confessions. Stay tuned.</p>
+      <h2 class="text-3xl font-bold border-b border-zinc-700 pb-2 mb-6">Echo Chamber</h2>
+      <p class="mb-4 text-zinc-300">Drop your confession below. Anonymous or signed. We don't judge &ndash; we just listen.</p>
+      <!-- Anonymous confession form -->
+      <form action="https://formspree.io/f/yourFormID" method="POST" class="space-y-4">
+        <input type="hidden" name="_subject" value="New Confession">
+        <input type="text" name="alias" placeholder="Alias (optional)" class="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+        <textarea name="confession" rows="6" required placeholder="Speak your truth..." class="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-400"></textarea>
+        <button type="submit" class="px-6 py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-lg hover:shadow-emerald-500/30 transition-all">Submit Anonymously</button>
+      </form>
+      <p class="text-xs text-zinc-500 mt-2">We use Formspree to forward confessions. No account, no trace.</p>
     </section>
   </main>
+
+  <!-- Footer -->
+  <footer class="bg-zinc-800 text-center py-4 text-xs text-zinc-500 border-t border-zinc-700">
+    &copy; 2025 The Bunker. All rights reserved.
+  </footer>
 </body>
 </html>
+"""
+
+file_path = "/mnt/data/bunker_site_slick.html"
+with open(file_path, "w") as f:
+    f.write(html_content)
+
+file_path
+
