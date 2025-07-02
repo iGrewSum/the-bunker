@@ -1,10 +1,25 @@
-html_content = """
+base_dir = "/mnt/data/arcade_street"
+os.makedirs(base_dir, exist_ok=True)
+
+navbar = """
+  <nav class="bg-black border-b border-red-800 sticky top-0 z-10">
+    <div class="container mx-auto flex justify-center gap-6 py-3 text-sm font-semibold">
+      <a href="index.html" class="hover:text-red-500">Home</a>
+      <a href="confessions.html" class="hover:text-red-500">Confessions</a>
+      <a href="signal.html" class="hover:text-red-500">Signal Boost</a>
+      <a href="uncuffed.html" class="hover:text-red-500">Uncuffed</a>
+      <a href="live.html" class="hover:text-red-500">Live Stream</a>
+    </div>
+  </nav>
+"""
+
+head = """
 <!DOCTYPE html>
-<html lang="en" class="bg-zinc-900 text-zinc-100 scroll-smooth">
+<html lang="en" class="bg-black text-red-100 scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Bunker</title>
+  <title>Arcade Street</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @keyframes glitch {
@@ -27,6 +42,7 @@ html_content = """
       font-size: 2.5rem;
       text-transform: uppercase;
       letter-spacing: .1em;
+      color: #ff0000;
     }
     .glitch:before,
     .glitch:after {
@@ -37,87 +53,43 @@ html_content = """
       width: 100%;
       overflow: hidden;
       background: transparent;
-      color: #00ffff;
+      color: #990000;
       clip-path: inset(0 0 0 0);
       animation: glitch 2s infinite linear alternate-reverse;
     }
     .glitch:after {
-      color: #ff00ff;
+      color: #ff5050;
       animation-delay: .5s;
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <!-- Header -->
-  <header class="bg-zinc-800 shadow-md">
+  <header class="bg-black shadow-md">
     <div class="container mx-auto py-8 text-center">
-      <h1 class="glitch" data-glitch="The Bunker">The Bunker</h1>
-      <p class="mt-2 text-zinc-400">Broadcast from the Underground</p>
+      <h1 class="glitch" data-glitch="Arcade Street">Arcade Street</h1>
+      <p class="mt-2 text-red-400 italic tracking-wide">Broadcast from the Underground</p>
     </div>
   </header>
+"""
 
-  <!-- Navigation -->
-  <nav class="bg-zinc-900 border-b border-zinc-700 sticky top-0 z-10">
-    <div class="container mx-auto flex justify-center gap-6 py-3 text-sm font-semibold">
-      <a href="#confessions" class="hover:text-emerald-400">Confessions</a>
-      <a href="#signal" class="hover:text-emerald-400">Signal Boost</a>
-      <a href="#uncuffed" class="hover:text-emerald-400">Uncuffed</a>
-      <a href="#echo" class="hover:text-emerald-400">Echo Chamber</a>
-    </div>
-  </nav>
-
-  <!-- Main -->
-  <main class="flex-1 container mx-auto px-4 lg:px-8 py-10 space-y-20">
-    <!-- Confessions -->
-    <section id="confessions">
-      <h2 class="text-3xl font-bold border-b border-zinc-700 pb-2 mb-6">Confessions</h2>
-      <article class="bg-zinc-800/60 backdrop-blur-md p-6 rounded-xl border border-zinc-700 shadow-lg hover:shadow-emerald-500/30 transition-shadow">
-        <h3 class="text-xl font-semibold mb-2">#0001 &mdash; I Never Worked for Anyone</h3>
-        <p class="leading-relaxed text-zinc-300">
-          I wasn't a foot soldier. I wasn't repping no set. I had connections with crews who moved heavy &mdash; Angels, GDs, border boys, you name it. But I moved my way...
-        </p>
-      </article>
-      <!-- Placeholder for future confessions -->
-    </section>
-
-    <!-- Signal Boost -->
-    <section id="signal">
-      <h2 class="text-3xl font-bold border-b border-zinc-700 pb-2 mb-6">Signal Boost</h2>
-      <p class="text-zinc-300">Coming soon: underground tech, digital tools, and survival tactics.</p>
-    </section>
-
-    <!-- Uncuffed -->
-    <section id="uncuffed">
-      <h2 class="text-3xl font-bold border-b border-zinc-700 pb-2 mb-6">Uncuffed</h2>
-      <p class="text-zinc-300">Raw takes on recovery, clarity, and climbing out of the system.</p>
-    </section>
-
-    <!-- Echo Chamber -->
-    <section id="echo">
-      <h2 class="text-3xl font-bold border-b border-zinc-700 pb-2 mb-6">Echo Chamber</h2>
-      <p class="mb-4 text-zinc-300">Drop your confession below. Anonymous or signed. We don't judge &ndash; we just listen.</p>
-      <!-- Anonymous confession form -->
-      <form action="https://formspree.io/f/yourFormID" method="POST" class="space-y-4">
-        <input type="hidden" name="_subject" value="New Confession">
-        <input type="text" name="alias" placeholder="Alias (optional)" class="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-400">
-        <textarea name="confession" rows="6" required placeholder="Speak your truth..." class="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-emerald-400"></textarea>
-        <button type="submit" class="px-6 py-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-lg hover:shadow-emerald-500/30 transition-all">Submit Anonymously</button>
-      </form>
-      <p class="text-xs text-zinc-500 mt-2">We use Formspree to forward confessions. No account, no trace.</p>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-zinc-800 text-center py-4 text-xs text-zinc-500 border-t border-zinc-700">
-    &copy; 2025 The Bunker. All rights reserved.
+footer = """
+  <footer class="bg-black text-center py-4 text-xs text-red-500 border-t border-red-800">
+    &copy; 2025 Arcade Street
   </footer>
 </body>
 </html>
 """
 
-file_path = "/mnt/data/bunker_site_slick.html"
-with open(file_path, "w") as f:
-    f.write(html_content)
+# index.html
+index_content = """
+  <main class="flex-1 container mx-auto px-4 lg:px-8 py-16 text-center">
+    <h2 class="text-4xl font-bold mb-6">Enter the Street</h2>
+    <p class="text-lg text-red-200">Raw stories, underground tech, no filters. Choose your lane above and step into the noise.</p>
+  </main>
+"""
 
-file_path
+with open(os.path.join(base_dir, "index.html"), "w") as f:
+    f.write(head + navbar + index_content + footer)
+
+
 
